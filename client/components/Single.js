@@ -10,7 +10,6 @@ export default class Single extends Component {
     // console.log(i);
     // get us the post
     const post = this.props.posts[i];
-    console.log(post);
 
     const postComments = this.props.comments[postId] || [];
 
