@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-const Comments = React.createClass({
+export default class Comments extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   renderComment(comment, i) {
     return (
       <div className="comment" key={i}>
@@ -11,18 +15,18 @@ const Comments = React.createClass({
         </p>
       </div>
     );
-  },
+  }
 
   handleSubmit(e) {
     e.preventDefault();
     console.log('Submitting the form');
     // es6 destructuring
-    console.log(this.props);
+    console.log(this.props.params);
     const { postId } = this.props.params;
     const author = this.refs.author.value;
     const comment = this.refs.comment.value;
     this.props.addComment(postId, author, comment);
-  },
+  }
 
   render() {
     return (
@@ -31,7 +35,7 @@ const Comments = React.createClass({
         <form
           ref="commentForm"
           className="comment-form"
-          onSubmit={this.handleSubmit}
+          onSubmit={this.handleSubmit.bind(this)}
         >
           <input type="text" ref="author" placeholder="author" />
           <input type="text" ref="comment" placeholder="comment" />
@@ -39,7 +43,7 @@ const Comments = React.createClass({
         </form>
       </div>
     );
-  },
-});
+  }
+}
 
-export default Comments;
+// export default Comments;
